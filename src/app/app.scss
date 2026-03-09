@@ -1,1 +1,14 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.scss';
+
+.tabs {
+  min-inline-size: 25rem;
+  padding-block-end: env(safe-area-inset-bottom);
+  //color: var(--tui-text-action);
+  --tui-active-color: var(--tui-background-accent-2);
+}
+
+.tui-fixed-nav {
+  position: fixed;
+  bottom: 0;
+  inline-size: 100%;
+}

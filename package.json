@@ -41,23 +41,5 @@
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
-  },
-  "prettier": {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": true,
-    "printWidth": 100,
-    "useTabs": false,
-    "singleQuote": true,
-    "bracketSpacing": true,
-    "arrowParens": "avoid",
-    "overrides": [
-      {
-        "files": "*.html",
-        "options": {
-          "parser": "angular"
-        }
-      }
-    ]
   }
 }

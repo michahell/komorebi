@@ -11,6 +11,11 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 |-------------------------------|-----------------------------------------------|
 | mon 9 mar 09-03 20:00 - 22:00 | 1h scaffold, npm install deps, copy AI config |
 
+### issues reported
+
+* Taiga-UI TabBar demo issue: https://github.com/taiga-family/taiga-ui/issues/13449
+* 
+
 ## Development server
 
 To start a local development server, run:

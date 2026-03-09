@@ -1,3 +1,24 @@
 <tui-root>
-  <router-outlet />
+  <div tuiTheme="dark" class="dark">
+    <div class="tui-fixed-nav">
+      <!-- main nav-->
+      <nav tuiTabBar class="tabs">
+        @for (route of routes(); track $index) {
+          @if (route.path !== '') {
+            <a
+              tuiTabBarItem
+              [badge]="route.data.badgeAmount ?? null"
+              [icon]="route.data.icon"
+              routerLinkActive
+              [routerLink]="route.path"
+            >
+              {{ route.path }}
+            </a>
+          }
+        }
+      </nav>
+    </div>
+    <!-- outlet -->
+    <router-outlet />
+  </div>
 </tui-root>
