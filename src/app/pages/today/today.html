@@ -1,40 +1,39 @@
 <div class="min-h-screen bg-linear-to-b from-orange-50 to-amber-50 p-6">
-  <div class="max-w-md mx-auto">
-    <!--    Header -->
+  <div class="max-w-full mx-auto">
+    <!--    header -->
     <div class="text-center mb-8">
-      <h1 class="text-lg tracking-widest text-orange-900/60 mb-6">木漏れ日 · KOMOREBI</h1>
+      <h1 class="text-lg tracking-widest text-orange-900/60 mb-6">{{ title() }}</h1>
       <div class="flex items-center justify-center gap-1 text-xs text-orange-800/50">
         <tui-icon icon="@tui.map-pin" [style.color]="'var(--tui-background-accent-1)'" />
-        <span>{{ location() }}</span>
+        <span>{{ cityAndCountry() }}</span>
       </div>
       <div class="text-xs text-orange-800/50 mt-1">{{ currentDate() }} · {{ currentTime() }}</div>
     </div>
 
-    <!--    Combined Golden Hour Progress Bar -->
+    <!--    magic hours -->
     <div class="mb-8">
-      <div class="flex justify-between items-center mb-2">
-        <span class="text-xs text-orange-900/60 tracking-wide"> GOLDEN HOUR </span>
-      </div>
+      <!-- blue hour text -->
       <div class="flex justify-between text-xs text-orange-800/50 mb-1">
-        <span> {{ goldenHourData().morningStart }} - {{ goldenHourData().morningEnd }} </span>
-        <span> {{ goldenHourData().eveningStart }} - {{ goldenHourData().eveningEnd }} </span>
+        <span> {{ today()?.sunrise?.timeBlueHourStart }} - {{ today()?.sunrise?.timeBlueHourEnd }} </span>
+        <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> BLUE HOURS </span>
+        <span> {{ today()?.sunset?.timeBlueHourStart }} - {{ today()?.sunset?.timeBlueHourEnd }} </span>
       </div>
-      <!--        Morning golden hour -->
-      <div class="relative h-3 bg-orange-200/40 rounded-full overflow-hidden">
-        <progress
-          max="100"
-          tuiProgressBar
-          class="progress"
-          [tuiProgressColorSegments]="colors"
-          [value]="slowValue$ | async"
-        ></progress>
+      <!-- golden hour text -->
+      <div class="flex justify-between text-xs text-orange-800/50 mb-1">
+        <span> {{ today()?.sunrise?.timeGoldenHourStart }} - {{ today()?.sunrise?.timeGoldenHourEnd }} </span>
+        <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> GOLDEN HOURS </span>
+        <span> {{ today()?.sunset?.timeGoldenHourStart }} - {{ today()?.sunset?.timeGoldenHourEnd }} </span>
       </div>
+      <!-- sunrise, sunset blue and golden hours -->
+      @if (discreteMagicHours(); as discreteMagicHours) {
+        <app-magic-hour-bar [hours]="discreteMagicHours"></app-magic-hour-bar>
+      }
     </div>
 
     <!--    Sun Visibility Throughout the Day -->
     <div class="mb-8">
       <div class="flex justify-between items-center mb-2">
-        <span class="text-xs text-orange-900/60 tracking-wide"> SUN VISIBILITY TODAY </span>
+        <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> SUN VISIBILITY TODAY </span>
       </div>
       <div class="h-3 bg-orange-200/40 rounded-full overflow-hidden flex">
         <progress
@@ -55,7 +54,7 @@
     <!--    Cloud Coverage -->
     <div class="mb-8">
       <div class="mb-2">
-        <span class="text-xs text-orange-900/60 tracking-wide"> CLOUD COVERAGE </span>
+        <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> CLOUD COVERAGE </span>
       </div>
       <div class="space-y-3">
         <div class="flex items-center justify-between">
