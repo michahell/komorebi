@@ -3,6 +3,7 @@ import { EventData } from 'services/golden-hour.model';
 export interface TodayData {
   sunrise: MappedEventData;
   sunset: MappedEventData;
+  weather: any;
 }
 
 export interface MappedEventData extends EventData {

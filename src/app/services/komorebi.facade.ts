@@ -35,10 +35,12 @@ export class KomorebiFacade {
     return forkJoin([
       this.#goldenHourService.getEvent(latitude, longitude, date, 'sunrise'),
       this.#goldenHourService.getEvent(latitude, longitude, date, 'sunset'),
+      this.#weatherService.getWeather(latitude, longitude),
     ]).pipe(
-      map(([sunrise, sunset]) => ({
+      map(([sunrise, sunset, weather]) => ({
         sunrise: this.#mapEventData(sunrise),
         sunset: this.#mapEventData(sunset),
+        weather,
       })),
       // persist to cache
       tap((todayData: TodayData) => {
@@ -66,6 +68,4 @@ export class KomorebiFacade {
       discreteGoldenHourEnd: Number(timeGoldenHourEnd.replace(':', '')),
     };
   }
-
-  // getForecast(): Observable<any> {}
 }
