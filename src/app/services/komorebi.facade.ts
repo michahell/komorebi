@@ -11,7 +11,7 @@ import { parseJSON } from 'date-fns/parseJSON';
 @Injectable({
   providedIn: 'root',
 })
-export class KomorebiService {
+export class KomorebiFacade {
   #cachingService = inject(CachingService);
   #goldenHourService = inject(GoldenHourService);
   #weatherService = inject(WeatherService);

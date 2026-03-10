@@ -1,0 +1,17 @@
+<div class="flex justify-between items-center mb-2">
+  <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> SUN VISIBILITY TODAY </span>
+</div>
+<div class="h-3 bg-orange-200/40 rounded-full overflow-hidden flex">
+  <progress
+    max="100"
+    tuiProgressBar
+    class="progress"
+    [tuiProgressColorSegments]="colorsSunViz"
+    [value]="fastValue$ | async"
+  ></progress>
+</div>
+<div class="flex justify-between text-xs text-orange-800/40 mt-1">
+  <span>00:00</span>
+  <span>12:00</span>
+  <span>24:00</span>
+</div>

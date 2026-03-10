@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-forecast',
+  selector: 'kr-forecast',
   imports: [],
   templateUrl: './forecast.html',
   styleUrl: './forecast.css',

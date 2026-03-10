@@ -5,7 +5,7 @@ import { TuiTabBar } from '@taiga-ui/addon-mobile';
 import { routes, RoutesWithIconAndBadge } from './app.routes';
 
 @Component({
-  selector: 'app-root',
+  selector: 'kr-root',
   imports: [RouterOutlet, TuiRoot, TuiTabBar, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.scss',

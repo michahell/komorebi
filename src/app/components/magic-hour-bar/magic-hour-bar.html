@@ -1,26 +1,28 @@
-<div class="relative h-4 bg-orange-200/40 rounded-full overflow-hidden">
+@if (blueHours(); as blueHours) {
   <!-- sunrise blue hour -->
   <div
     class="absolute top-0 h-full bg-linear-to-r from-gray-800 to-blue-400 transition-all duration-1000"
-    [style.left.%]="(hours().sunrise.bhs / 2400) * 100"
-    [style.width.%]="((hours().sunrise.bhe - hours().sunrise.bhs) / 2400) * 100"
+    [style.left.%]="(blueHours.sunrise.bhs / 2400) * 100"
+    [style.width.%]="((blueHours.sunrise.bhe - blueHours.sunrise.bhs) / 2400) * 100"
   ></div>
+  <!-- sunset blue hour -->
+  <div
+    class="absolute top-0 h-full bg-linear-to-l from-gray-800 to-blue-400 transition-all duration-1000"
+    [style.left.%]="(blueHours.sunset.bhs / 2400) * 100"
+    [style.width.%]="((blueHours.sunset.bhe - blueHours.sunset.bhs) / 2400) * 100"
+  ></div>
+}
+@if (goldenHours(); as goldenHours) {
   <!-- sunrise golden hour -->
   <div
     class="absolute top-0 h-full bg-linear-to-l from-amber-500 to-orange-600 transition-all duration-1000"
-    [style.left.%]="(hours().sunrise.ghs / 2400) * 100"
-    [style.width.%]="((hours().sunrise.ghe - hours().sunrise.ghs) / 2400) * 100"
+    [style.left.%]="(goldenHours.sunrise.ghs / 2400) * 100"
+    [style.width.%]="((goldenHours.sunrise.ghe - goldenHours.sunrise.ghs) / 2400) * 100"
   ></div>
   <!-- sunset golden hour -->
   <div
     class="absolute top-0 h-full bg-linear-to-r from-amber-500 to-orange-600 transition-all duration-1000"
-    [style.left.%]="(hours().sunset.ghs / 2400) * 100"
-    [style.width.%]="((hours().sunset.ghe - hours().sunset.ghs) / 2400) * 100"
+    [style.left.%]="(goldenHours.sunset.ghs / 2400) * 100"
+    [style.width.%]="((goldenHours.sunset.ghe - goldenHours.sunset.ghs) / 2400) * 100"
   ></div>
-  <!-- sunset blue hour -->
-  <div
-    class="absolute top-0 h-full bg-linear-to-r from-gray-800 to-blue-400 transition-all duration-1000"
-    [style.left.%]="(hours().sunset.bhs / 2400) * 100"
-    [style.width.%]="((hours().sunset.bhe - hours().sunset.bhs) / 2400) * 100"
-  ></div>
-</div>
+}

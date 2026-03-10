@@ -7,9 +7,13 @@ Komorebi is a golden hour scoring- and forecasting app based on your current loc
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
 
 ### Time spent
-| date                          | spent                                         |
-|-------------------------------|-----------------------------------------------|
-| mon 9 mar 09-03 20:00 - 22:00 | 1h scaffold, npm install deps, copy AI config |
+| date                    | spent                                                    |
+|-------------------------|----------------------------------------------------------|
+| mon 09-03 20:00 - 21:00 | 1h scaffold, npm install deps, copy AI config            |
+| mon 09-03 21:00 - 23:00 | 2h skeleton pages, implement figma make UI               |
+| mon 09-03 23:00 - 24:00 | 1h scaffold services and location implementation         |
+| tue 10-03 15:30 - 16:00 | 30m golden hour service                                  |
+| tue 10-03 17:00 - 19:00 | 2h caching service, golden hour service, weather service |
 
 ### issues reported
 

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-settings',
+  selector: 'kr-settings',
   imports: [],
   templateUrl: './settings.html',
   styleUrl: './settings.css',

@@ -10,134 +10,20 @@
       <div class="text-xs text-orange-800/50 mt-1">{{ currentDate() }} · {{ currentTime() }}</div>
     </div>
 
-    <!--    magic hours -->
-    <div class="mb-8">
-      <!-- blue hour text -->
-      <div class="flex justify-between text-xs text-orange-800/50 mb-1">
-        <span> {{ today()?.sunrise?.timeBlueHourStart }} - {{ today()?.sunrise?.timeBlueHourEnd }} </span>
-        <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> BLUE HOURS </span>
-        <span> {{ today()?.sunset?.timeBlueHourStart }} - {{ today()?.sunset?.timeBlueHourEnd }} </span>
+    @if (today(); as today) {
+      <div class="mb-8">
+        <kr-magic-hours [today]="today"></kr-magic-hours>
       </div>
-      <!-- golden hour text -->
-      <div class="flex justify-between text-xs text-orange-800/50 mb-1">
-        <span> {{ today()?.sunrise?.timeGoldenHourStart }} - {{ today()?.sunrise?.timeGoldenHourEnd }} </span>
-        <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> GOLDEN HOURS </span>
-        <span> {{ today()?.sunset?.timeGoldenHourStart }} - {{ today()?.sunset?.timeGoldenHourEnd }} </span>
+
+      <div class="mb-8">
+        <kr-sun-visibility [today]="today"></kr-sun-visibility>
       </div>
-      <!-- sunrise, sunset blue and golden hours -->
-      @if (discreteMagicHours(); as discreteMagicHours) {
-        <app-magic-hour-bar [hours]="discreteMagicHours"></app-magic-hour-bar>
-      }
-    </div>
 
-    <!--    Sun Visibility Throughout the Day -->
-    <div class="mb-8">
-      <div class="flex justify-between items-center mb-2">
-        <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> SUN VISIBILITY TODAY </span>
+      <div class="mb-8">
+        <kr-cloud-coverage [today]="today"></kr-cloud-coverage>
       </div>
-      <div class="h-3 bg-orange-200/40 rounded-full overflow-hidden flex">
-        <progress
-          max="100"
-          tuiProgressBar
-          class="progress"
-          [tuiProgressColorSegments]="colorsSunViz"
-          [value]="fastValue$ | async"
-        ></progress>
-      </div>
-      <div class="flex justify-between text-xs text-orange-800/40 mt-1">
-        <span>00:00</span>
-        <span>12:00</span>
-        <span>24:00</span>
-      </div>
-    </div>
 
-    <!--    Cloud Coverage -->
-    <div class="mb-8">
-      <div class="mb-2">
-        <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> CLOUD COVERAGE </span>
-      </div>
-      <div class="space-y-3">
-        <div class="flex items-center justify-between">
-          <span class="text-xs text-orange-800/50 w-20">Low</span>
-
-          <div class="flex-1 h-2 bg-orange-200/40 rounded-full overflow-hidden">
-            <progress
-              max="100"
-              size="s"
-              tuiProgressBar
-              class="progress"
-              color="linear-gradient(to right, #2196F399, var(--tui-chart-categorical-12))"
-              [value]="slowValue$ | async"
-            ></progress>
-          </div>
-
-          <span class="text-xs text-orange-800/50 w-20 text-right">5 - 15 %</span>
-        </div>
-        <div class="flex items-center justify-between">
-          <span class="text-xs text-orange-800/50 w-20">Medium</span>
-
-          <div class="flex-1 h-2 bg-orange-200/40 rounded-full overflow-hidden">
-            <progress
-              max="100"
-              size="s"
-              tuiProgressBar
-              class="progress"
-              [tuiProgressColorSegments]="['#2196F399']"
-              [value]="slowValue$ | async"
-            ></progress>
-          </div>
-
-          <span class="text-xs text-orange-800/50 w-20 text-right">20 - 35 %</span>
-        </div>
-        <div class="flex items-center justify-between">
-          <span class="text-xs text-orange-800/50 w-20">High</span>
-
-          <div class="flex-1 h-2 bg-orange-200/40 rounded-full overflow-hidden">
-            <progress
-              max="100"
-              size="s"
-              tuiProgressBar
-              class="progress"
-              [tuiProgressColorSegments]="['#2196F3BB']"
-              [value]="slowValue$ | async"
-            ></progress>
-          </div>
-
-          <span class="text-xs text-orange-800/50 w-20 text-right">40 - 45%</span>
-        </div>
-      </div>
-    </div>
-
-    <!--    Weather Info -->
-    <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-4">
-      <div class="grid grid-cols-2 gap-4">
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-orange-100/60 flex items-center justify-center text-orange-700">
-            <tui-icon
-              icon="@tui.map-pin"
-              [style.color]="'var(--tui-background-accent-1)'"
-              [style.font-size.rem]="1.5"
-            />
-          </div>
-          <div>
-            <div class="text-xs text-orange-800/50">Conditions</div>
-            <div class="text-sm text-orange-900/80 capitalize">partly cloudy</div>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-full bg-blue-100/60 flex items-center justify-center text-blue-700">
-            <tui-icon
-              icon="@tui.map-pin"
-              [style.color]="'var(--tui-background-accent-1)'"
-              [style.font-size.rem]="1.5"
-            />
-          </div>
-          <div>
-            <div class="text-xs text-orange-800/50">Precipitation</div>
-            <div class="text-sm text-orange-900/80">15%</div>
-          </div>
-        </div>
-      </div>
-    </div>
+      <kr-weather-info [today]="today"></kr-weather-info>
+    }
   </div>
 </div>
