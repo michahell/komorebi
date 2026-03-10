@@ -1,5 +1,4 @@
 import { Component, computed, effect, inject, Signal, signal } from '@angular/core';
-import { delay, of, timer } from 'rxjs';
 import { TuiIcon } from '@taiga-ui/core';
 import { LocationService } from 'services/location.service';
 import { Location } from 'services/location.model';
@@ -20,17 +19,6 @@ import { WeatherInfo } from 'components/weather-info/weather-info';
 export default class Today {
   readonly #locationService = inject(LocationService);
   readonly #komorebiFacade = inject(KomorebiFacade);
-
-  protected readonly fastValue$ = timer(50, 50);
-  protected readonly slowValue$ = of(100).pipe(delay(1500));
-
-  protected readonly colors = [
-    'var(--tui-chart-categorical-01)',
-    'var(--tui-chart-categorical-21)',
-    'lightskyblue',
-    '#3682db',
-    'var(--tui-background-accent-1)',
-  ];
 
   title: Signal<string> = signal('木漏れ日 · KOMOREBI');
   location: Signal<Location | void> = this.#locationService.getLocation();
@@ -54,9 +42,5 @@ export default class Today {
           });
       }
     });
-  }
-
-  #formatHour(date: string): string {
-    return format(new Date(), 'HH:mm');
   }
 }

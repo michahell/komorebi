@@ -1,23 +1,32 @@
-<!-- blue hour text -->
-<div class="flex justify-between text-xs text-orange-800/50 mb-1">
-  <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> BLUE HOURS </span>
-  <!--  [style.left.%]="(today()?.sunrise?.discreteBlueHourStart / 2400) * 100"-->
-  <span class="absolute"> {{ today()?.sunrise?.timeBlueHourStart }} - {{ today()?.sunrise?.timeBlueHourEnd }} </span>
-  <span> {{ today()?.sunset?.timeBlueHourStart }} - {{ today()?.sunset?.timeBlueHourEnd }} </span>
-</div>
-<div class="relative h-6 bg-orange-200/40 rounded-md overflow-hidden mb-1">
-  <!-- sunrise and sunset blue hours -->
-  @if (discreteBlueHours(); as discreteBlueHours) {
-    <kr-magic-hour-bar [blueHours]="discreteBlueHours"></kr-magic-hour-bar>
-  }
-  <!-- sunrise and sunset golden hours -->
-  @if (discreteGoldenHours(); as discreteGoldenHours) {
-    <kr-magic-hour-bar [goldenHours]="discreteGoldenHours"></kr-magic-hour-bar>
-  }
-</div>
-<!-- golden hour text -->
-<div class="flex justify-between text-xs text-orange-800/50 mb-1">
-  <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> GOLDEN HOURS </span>
-  <span> {{ today()?.sunrise?.timeGoldenHourStart }} - {{ today()?.sunrise?.timeGoldenHourEnd }} </span>
-  <span> {{ today()?.sunset?.timeGoldenHourStart }} - {{ today()?.sunset?.timeGoldenHourEnd }} </span>
-</div>
+@if (today(); as today) {
+  <!-- blue hour text -->
+  <div class="flex justify-between text-xs text-blue-800/50 mb-1">
+    <span class="text-blue-900/60 tracking-wide font-semibold"> BLUE HOURS </span>
+    <span class="absolute text-left" [style.left.%]="(today.sunrise.discreteBlueHourStart / 2400) * 100">
+      {{ today.sunrise.timeBlueHourStart }} - {{ today.sunrise.timeBlueHourEnd }}
+    </span>
+    <span class="absolute text-right" [style.right.%]="((2400 - today.sunset.discreteBlueHourEnd) / 2400) * 100">
+      {{ today.sunset.timeBlueHourStart }} - {{ today.sunset.timeBlueHourEnd }}
+    </span>
+  </div>
+  <div class="relative h-6 bg-orange-200/40 rounded-md overflow-hidden mb-1">
+    <!-- sunrise and sunset blue hours -->
+    @if (discreteBlueHours(); as discreteBlueHours) {
+      <kr-magic-hour-bar [blueHours]="discreteBlueHours"></kr-magic-hour-bar>
+    }
+    <!-- sunrise and sunset golden hours -->
+    @if (discreteGoldenHours(); as discreteGoldenHours) {
+      <kr-magic-hour-bar [goldenHours]="discreteGoldenHours"></kr-magic-hour-bar>
+    }
+  </div>
+  <!-- golden hour text -->
+  <div class="flex justify-between text-xs text-orange-800/50 mb-1">
+    <span class="text-orange-900/60 tracking-wide font-semibold"> GOLDEN HOURS </span>
+    <span class="absolute text-left" [style.left.%]="(today.sunrise.discreteGoldenHourEnd / 2400) * 100">
+      {{ today.sunrise.timeGoldenHourStart }} - {{ today.sunrise.timeGoldenHourEnd }}
+    </span>
+    <span class="absolute text-right" [style.right.%]="((2400 - today.sunset.discreteGoldenHourStart) / 2400) * 100">
+      {{ today.sunset.timeGoldenHourStart }} - {{ today.sunset.timeGoldenHourEnd }}
+    </span>
+  </div>
+}
