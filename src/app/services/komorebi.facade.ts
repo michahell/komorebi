@@ -4,9 +4,10 @@ import { WeatherService } from 'services/weather-service';
 import { CachingService } from 'services/caching-service';
 import { forkJoin, map, Observable, of, take, tap } from 'rxjs';
 import { EventData } from 'services/golden-hour.model';
-import { MappedEventData, TodayData } from 'services/komorebi.model';
+import { MappedEventData, MappedWeatherData, TodayData } from 'services/komorebi.model';
 import { format } from 'date-fns/format';
 import { parseJSON } from 'date-fns/parseJSON';
+import { GetWeatherApiResponse, WeatherDataDay } from 'services/weather.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,7 @@ export class KomorebiFacade {
 
     // first try to get both sunrise and sunset event data from cache
     if (cachedToday) {
-      console.log('cache hit for todays golden hour data!');
+      console.log('cache hit for today`s golden hour data!');
       return of(cachedToday);
     }
     // no existing cache hits for these coordinates, today,
@@ -40,7 +41,10 @@ export class KomorebiFacade {
       map(([sunrise, sunset, weather]) => ({
         sunrise: this.#mapEventData(sunrise),
         sunset: this.#mapEventData(sunset),
-        weather,
+        weather: {
+          day: this.#mapWeatherData(weather),
+          hourly: weather.data_1h,
+        },
       })),
       // persist to cache
       tap((todayData: TodayData) => {
@@ -67,5 +71,45 @@ export class KomorebiFacade {
       discreteGoldenHourStart: Number(timeGoldenHourStart.replace(':', '')),
       discreteGoldenHourEnd: Number(timeGoldenHourEnd.replace(':', '')),
     };
+  }
+
+  #mapWeatherData(weather: GetWeatherApiResponse): MappedWeatherData {
+    type field = keyof WeatherDataDay;
+
+    const wantedFields: field[] = [
+      // low clouds
+      'lowclouds_min',
+      'lowclouds_mean',
+      'lowclouds_max',
+      // mid clouds
+      'midclouds_min',
+      'midclouds_mean',
+      'midclouds_max',
+      // high clouds
+      'highclouds_min',
+      'highclouds_mean',
+      'highclouds_max',
+      // visibility
+      'visibility_min',
+      'visibility_mean',
+      'visibility_max',
+      // fog
+      'fog_probability',
+      // precipitation
+      'precipitation',
+      // air quality
+      'airqualityindex_min',
+      'airqualityindex_mean',
+      'airqualityindex_max',
+    ];
+
+    return Object.entries(weather.data_day).reduce<any>((newMapped, [key, value]) => {
+      if (wantedFields.includes(key as field)) {
+        newMapped[key] = value;
+        return newMapped;
+      } else {
+        return newMapped;
+      }
+    }, {});
   }
 }
