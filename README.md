@@ -2,23 +2,31 @@
 
 #### what is Komorebi
 
-Komorebi is a golden hour scoring- and forecasting app based on your current location and weather forecast.
+Komorebi is a tiny golden hour scoring- and forecasting app based on your current location and weather forecast.
+
+![komorebi.png](komorebi.png)
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
 
 ### Time spent
-| date                    | spent                                                    |
-|-------------------------|----------------------------------------------------------|
-| mon 09-03 20:00 - 21:00 | 1h scaffold, npm install deps, copy AI config            |
-| mon 09-03 21:00 - 23:00 | 2h skeleton pages, implement figma make UI               |
-| mon 09-03 23:00 - 24:00 | 1h scaffold services and location implementation         |
-| tue 10-03 15:30 - 16:00 | 30m golden hour service                                  |
-| tue 10-03 17:00 - 19:00 | 2h caching service, golden hour service, weather service |
+| date                    | spent                                                                            |
+|-------------------------|----------------------------------------------------------------------------------|
+| mon 09-03 20:00 - 21:00 | 1h scaffold, npm install deps, copy AI config                                    |
+| mon 09-03 21:00 - 23:00 | 2h skeleton pages, implement figma make UI                                       |
+| mon 09-03 23:00 - 24:00 | 1h scaffold services and location implementation                                 |
+| tue 10-03 15:30 - 16:00 | 30m golden hour service                                                          |
+| tue 10-03 17:00 - 19:00 | 2h caching service, golden hour service, weather service                         |
+| tue 10-03 19:00 - 22:00 | 3h ?                                                                             |
+| tue 10-03 22:00 - 22:45 | 45m implement weather service and update facade                                  |
+| wed 11-03 14:15 - 15:15 | 1h tweaking verdict                                                              |
+| wed 11-03 15:15 - 15:45 | 30m revert scoring for AQ and VIZ, cleanup, elaborate unit-tests                 |
+| wed 11-03 15:45 - 17:15 | 1h30m setup eslint, copy over gh pipeline, fix lint issues, elaborate unit-tests |
+
+total time spent: mon 4h + tue 6h15m + wed 3h = 13h15m
 
 ### issues reported
 
 * Taiga-UI TabBar demo issue: https://github.com/taiga-family/taiga-ui/issues/13449
-* 
 
 ## Development server
 
