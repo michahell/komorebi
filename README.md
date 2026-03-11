@@ -4,7 +4,17 @@
 
 Komorebi is a tiny golden hour scoring- and forecasting app based on your current location and weather forecast.
 
-![komorebi.png](komorebi.png)
+<p align="center">
+  <img src="komorebi-figma-current.png" />
+</p>
+
+<p align="center">
+  <img src="komorebi-figma-gen-design.png" />
+</p>
+
+<p align="center">
+  <img src="komorebi-figma-gen-design2.png" />
+</p>
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
 
