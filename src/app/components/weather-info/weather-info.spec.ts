@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { WeatherInfo } from './weather-info';
-import { MOCK_TODAY_DATA } from '../../services/komorebi.mock';
+import { MOCK_TODAY_DATA } from 'services/komorebi.mock';
+import { provideTailwindBreakpoints } from 'ngx-mq';
 
 describe('WeatherInfo', () => {
   let component: WeatherInfo;
@@ -10,6 +10,7 @@ describe('WeatherInfo', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [WeatherInfo],
+      providers: [provideTailwindBreakpoints()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(WeatherInfo);

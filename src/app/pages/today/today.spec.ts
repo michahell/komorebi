@@ -6,6 +6,7 @@ import { LocationService } from 'services/location.service';
 import { KomorebiFacade } from 'services/komorebi.facade';
 import { MOCK_TODAY_DATA } from 'services/komorebi.mock';
 import Today from './today';
+import { provideTailwindBreakpoints } from 'ngx-mq';
 
 describe('Today', () => {
   let component: Today;
@@ -33,6 +34,7 @@ describe('Today', () => {
     await TestBed.configureTestingModule({
       imports: [Today],
       providers: [
+        provideTailwindBreakpoints(),
         { provide: LocationService, useValue: locationServiceMock },
         { provide: KomorebiFacade, useValue: komorebiFacadeMock },
       ],
