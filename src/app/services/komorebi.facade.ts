@@ -54,10 +54,10 @@ export class KomorebiFacade {
   }
 
   #mapEventData(eventData: EventData): MappedEventData {
-    const timeBlueHourStart = format(new Date(parseJSON(eventData.magics.blue_hour[0])), 'HH:mm');
-    const timeBlueHourEnd = format(new Date(parseJSON(eventData.magics.blue_hour[1])), 'HH:mm');
-    const timeGoldenHourStart = format(new Date(parseJSON(eventData.magics.golden_hour[0])), 'HH:mm');
-    const timeGoldenHourEnd = format(new Date(parseJSON(eventData.magics.golden_hour[1])), 'HH:mm');
+    const timeBlueHourStart = format(new Date(eventData.magics.blue_hour[0]), 'HH:mm');
+    const timeBlueHourEnd = format(new Date(eventData.magics.blue_hour[1]), 'HH:mm');
+    const timeGoldenHourStart = format(new Date(eventData.magics.golden_hour[0]), 'HH:mm');
+    const timeGoldenHourEnd = format(new Date(eventData.magics.golden_hour[1]), 'HH:mm');
 
     return {
       ...eventData,
