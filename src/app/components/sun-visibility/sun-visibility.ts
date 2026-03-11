@@ -15,7 +15,7 @@ export class SunVisibility {
   );
 
   #mapSunVisibilityToColor(sunVisibility: number[]): string[] {
-    return sunVisibility.map((sunVisibility, index) => {
+    return sunVisibility.map(sunVisibility => {
       return `rgba(251, 146, 60, ${(sunVisibility / 100) * 2.55} )`;
     });
   }

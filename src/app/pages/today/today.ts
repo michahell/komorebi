@@ -23,6 +23,7 @@ export default class Today {
 
   title: Signal<string> = signal('木漏れ日 · KOMOREBI');
   location: Signal<Location | void> = this.#locationService.getLocation();
+  locationError = this.#locationService.locationError;
   cityAndCountry: Signal<string> = computed(() => {
     const location = this.location();
     return location ? `${location.city}, ${location.countryCode}` : '';
@@ -47,7 +48,6 @@ export default class Today {
         this.#komorebiFacade
           .getToday(location.latitude, location.longitude, format(new Date(), 'yyyy-MM-dd'))
           .subscribe(todayData => {
-            console.log('komorebi for today: ', todayData);
             this.today.set(todayData);
           });
       }

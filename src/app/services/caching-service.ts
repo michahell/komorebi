@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class CachingService {
-  constructor() {}
-
-  naiveGetCache(key: string): any {
+  naiveGetCache<T = string>(key: string): T | null {
     const hit = localStorage.getItem(key);
     if (hit) {
       return JSON.parse(hit);
@@ -14,7 +12,7 @@ export class CachingService {
     return null;
   }
 
-  naiveSetCache(key: string, data: any): void {
+  naiveSetCache<T = string | object | number | Date>(key: string, data: T): void {
     localStorage.setItem(key, JSON.stringify(data));
   }
 

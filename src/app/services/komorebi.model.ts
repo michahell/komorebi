@@ -23,15 +23,15 @@ export interface MappedEventData extends EventData {
 
 export interface MappedWeatherData {
   // visibility
-  visibility_min: any;
-  visibility_mean: any;
-  visibility_max: any;
+  visibility_min: number;
+  visibility_mean: number;
+  visibility_max: number;
   // fog
-  fog_probability: any;
+  fog_probability: number;
   // precipitation
-  precipitation: any;
+  precipitation: number;
   // air quality
-  airqualityindex_min: any;
-  airqualityindex_mean: any;
-  airqualityindex_max: any;
+  airqualityindex_min: number;
+  airqualityindex_mean: number;
+  airqualityindex_max: number;
 }

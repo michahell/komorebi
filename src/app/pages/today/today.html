@@ -5,7 +5,11 @@
       <h1 class="text-lg tracking-widest text-orange-900/60 mb-6">{{ title() }}</h1>
       <div class="flex items-center justify-center gap-1 text-xs text-orange-800/50">
         <tui-icon icon="@tui.map-pin" [style.color]="'var(--tui-background-accent-1)'" />
-        <span>{{ cityAndCountry() }}</span>
+        @if (cityAndCountry(); as cityAndCountry) {
+          <span>{{ cityAndCountry }}</span>
+        } @else if (locationError()?.errorDescription) {
+          <span>{{ locationError()?.errorDescription }}</span>
+        }
       </div>
       <div class="text-xs text-orange-800/50 mt-1">{{ currentDate() }} · {{ currentTime() }}</div>
     </div>
@@ -29,6 +33,12 @@
 
       @if (verdictScores(); as verdictScores) {
         <kr-verdict [verdictScores]="verdictScores"></kr-verdict>
+      }
+    } @else {
+      @if (locationError()?.errorCode) {
+        <div class="flex justify-center items-center m-25 ml-0 mr-0">
+          <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> COULD NOT DETERMINE LOCATION </span>
+        </div>
       }
     }
   </div>

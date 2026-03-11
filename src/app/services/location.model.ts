@@ -3,4 +3,6 @@ export interface Location {
   longitude: string;
   city?: string;
   countryCode?: string;
+  errorCode?: number;
+  errorDescription?: string;
 }

@@ -1,4 +1,4 @@
-import { Injectable, Signal } from '@angular/core';
+import { Injectable, signal, Signal } from '@angular/core';
 import { from } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { nearestCity } from 'cityjs';
@@ -8,7 +8,9 @@ import { Location } from 'services/location.model';
   providedIn: 'root',
 })
 export class LocationService {
+  locationError = signal<{ errorCode: number; errorDescription: string } | null>(null);
   getLocation(): Signal<Location | void> {
+    this.locationError.set(null);
     const promise: Promise<Location | void> = this.#getBrowserLocation()
       .then(position => this.#onGetLocation(position))
       .catch(error => this.#handleGeolocationErrors(error));
@@ -38,18 +40,27 @@ export class LocationService {
     };
   }
 
-  #handleGeolocationErrors(error: GeolocationPositionError): void {
-    let errorString = '';
-    switch (error.code) {
-      case error.PERMISSION_DENIED:
-        errorString = 'User denied the request for Geolocation.';
-        break;
-      case error.POSITION_UNAVAILABLE:
-        errorString = 'Location information is unavailable.';
-        break;
-      case error.TIMEOUT:
-        errorString = 'The request to get user location timed out.';
-        break;
+  #handleGeolocationErrors(error: GeolocationPositionError | number): void {
+    let errorDescription = '';
+    const code = typeof error === 'number' ? error : error.code;
+
+    if (typeof error !== 'number') {
+      switch (code) {
+        case error.PERMISSION_DENIED:
+          errorDescription = 'User denied the request for Geolocation.';
+          break;
+        case error.POSITION_UNAVAILABLE:
+          errorDescription = 'Location information is unavailable.';
+          break;
+        case error.TIMEOUT:
+          errorDescription = 'The request to get user location timed out.';
+          break;
+      }
     }
+
+    this.locationError.set({
+      errorCode: code,
+      errorDescription,
+    });
   }
 }

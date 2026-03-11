@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Verdict } from './verdict';
-import { MOCK_TODAY_DATA } from '../../services/komorebi.mock';
 
 describe('Verdict', () => {
   let component: Verdict;

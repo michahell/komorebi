@@ -24,11 +24,10 @@ export class KomorebiFacade {
     const shortLong = longitude.slice(0, 5);
     const baseCacheKey = `${shortLat}-${shortLong}-${date}`;
     const todayCacheKey = `${baseCacheKey}-today`;
-    const cachedToday = this.#cachingService.naiveGetCache(todayCacheKey);
+    const cachedToday = this.#cachingService.naiveGetCache<TodayData>(todayCacheKey);
 
     // first try to get both sunrise and sunset event data from cache
     if (cachedToday) {
-      console.log('cache hit for today`s golden hour data!');
       return of(cachedToday);
     }
     // no existing cache hits for these coordinates, today,
@@ -48,7 +47,7 @@ export class KomorebiFacade {
       })),
       // persist to cache
       tap((todayData: TodayData) => {
-        this.#cachingService.naiveSetCache(todayCacheKey, todayData);
+        this.#cachingService.naiveSetCache<TodayData>(todayCacheKey, todayData);
       }),
       take(1)
     );
@@ -91,13 +90,13 @@ export class KomorebiFacade {
       'airqualityindex_max',
     ];
 
-    return Object.entries(weather.data_day).reduce<any>((newMapped, [key, value]) => {
+    return Object.entries(weather.data_day).reduce<Record<string, number>>((newMapped, [key, value]) => {
       if (wantedFields.includes(key as field)) {
         newMapped[key] = value[0];
         return newMapped;
       } else {
         return newMapped;
       }
-    }, {});
+    }, {}) as unknown as MappedWeatherData;
   }
 }

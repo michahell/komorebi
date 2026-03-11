@@ -15,7 +15,7 @@ export class CloudCoverage {
   readonly lowCloudCoverageColors = computed(() => this.#mapCloudCoverToColor(this.today().weather.hourly.lowclouds));
 
   #mapCloudCoverToColor(cloudCover: number[]): string[] {
-    return cloudCover.map((cloudCover, index) => {
+    return cloudCover.map(cloudCover => {
       return `rgba(255, 255, 255, ${cloudCover / 100})`;
     });
   }
