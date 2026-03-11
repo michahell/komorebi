@@ -11,6 +11,8 @@ import {
   MOCK_WEATHER_RESPONSE,
 } from './komorebi.mock';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { format } from 'date-fns/format';
+import { parseJSON } from 'date-fns/parseJSON';
 
 describe('KomorebiFacade', () => {
   let service: KomorebiFacade;
@@ -74,8 +76,18 @@ describe('KomorebiFacade', () => {
 
       const result = await firstValueFrom(service.getToday(lat, long, date));
 
-      expect(result.sunrise.timeBlueHourStart).toBe('08:00');
-      expect(result.sunset.timeBlueHourStart).toBe('20:00');
+      const expectedSunriseBlueHourStartTime = format(
+        new Date(parseJSON(MOCK_EVENT_DATA_SUNRISE.magics.blue_hour[0])),
+        'HH:mm'
+      );
+
+      const expectedSunsetBlueHourStartTime = format(
+        new Date(parseJSON(MOCK_EVENT_DATA_SUNSET.magics.blue_hour[0])),
+        'HH:mm'
+      );
+
+      expect(result.sunrise.timeBlueHourStart).toBe(expectedSunriseBlueHourStartTime);
+      expect(result.sunset.timeBlueHourStart).toBe(expectedSunsetBlueHourStartTime);
       expect(result.weather.day.visibility_min).toBe(10000);
 
       expect(cachingServiceMock.naiveGetCache).toHaveBeenCalledWith(expectedCacheKey);
