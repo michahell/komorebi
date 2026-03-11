@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { GoldenHourService } from './golden-hour-service';
 
 describe('GoldenHourService', () => {

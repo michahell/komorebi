@@ -39,7 +39,7 @@ export class LocationService {
   }
 
   #handleGeolocationErrors(error: GeolocationPositionError): void {
-    let errorString: string = '';
+    let errorString = '';
     switch (error.code) {
       case error.PERMISSION_DENIED:
         errorString = 'User denied the request for Geolocation.';

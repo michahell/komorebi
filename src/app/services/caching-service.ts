@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { getDate } from 'date-fns/getDate';
 
 @Injectable({
   providedIn: 'root',

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MagicHours } from './magic-hours';
+import { MOCK_TODAY_DATA } from '../../services/komorebi.mock';
 
 describe('MagicHours', () => {
   let component: MagicHours;
@@ -12,7 +13,9 @@ describe('MagicHours', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(MagicHours);
+    fixture.componentRef.setInput('today', MOCK_TODAY_DATA);
     component = fixture.componentInstance;
+    fixture.detectChanges();
     await fixture.whenStable();
   });
 
