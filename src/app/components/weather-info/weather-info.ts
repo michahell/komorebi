@@ -13,30 +13,17 @@ export class WeatherInfo {
   fogProbability = computed(() => this.today().weather.day.fog_probability);
   precipitation = computed(() => this.today().weather.day.precipitation);
 
-  visibilityScore = computed(() =>
-    this.#naiveScoreFunction(
-      this.today().weather.day.visibility_min,
-      this.today().weather.day.visibility_mean,
-      this.today().weather.day.visibility_max,
-      20000
-    ).toFixed(2)
-  );
+  visibility = computed(() => {
+    return `\
+    ${this.today().weather.day.visibility_min / 1000}km, \
+    ${this.today().weather.day.visibility_mean / 1000}km, \
+    ${this.today().weather.day.visibility_max / 1000}km`;
+  });
 
-  airQualityScore = computed(() =>
-    (
-      this.#naiveScoreFunction(
-        this.today().weather.day.airqualityindex_min,
-        this.today().weather.day.airqualityindex_mean,
-        this.today().weather.day.airqualityindex_max,
-        100
-      ) / 10
-    ).toFixed(2)
-  );
-
-  #naiveScoreFunction(min: number, mean: number, max: number, upperBound: number): number {
-    const minScore = (min / upperBound) * 100;
-    const meanScore = (mean / upperBound) * 100;
-    const maxScore = (max / upperBound) * 100;
-    return Number((minScore + meanScore + maxScore) / 3);
-  }
+  airQuality = computed(() => {
+    return `\
+    ${this.today().weather.day.airqualityindex_min / 10},\
+    ${this.today().weather.day.airqualityindex_mean / 10},\
+    ${this.today().weather.day.airqualityindex_max / 10}`;
+  });
 }

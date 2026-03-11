@@ -6,8 +6,8 @@
         <tui-icon icon="@tui.eye" [style.font-size.rem]="1.5" />
       </div>
       <div>
-        <div class="text-xs text-orange-800/50">Visibility</div>
-        <div class="text-sm text-orange-900/80 capitalize">{{ visibilityScore() }}</div>
+        <div class="text-xs text-orange-800/50">Visibility (min, mean, max)</div>
+        <div class="text-xs text-orange-900/80 capitalize">{{ visibility() }}</div>
       </div>
     </div>
     <!-- air quality -->
@@ -16,8 +16,8 @@
         <tui-icon icon="@tui.spray-can" [style.font-size.rem]="1.5" />
       </div>
       <div>
-        <div class="text-xs text-orange-800/50">Air quality</div>
-        <div class="text-sm text-orange-900/80 capitalize">{{ airQualityScore() }}</div>
+        <div class="text-xs text-orange-800/50">Air quality (min, mean, max)</div>
+        <div class="text-xs text-orange-900/80 capitalize">{{ airQuality() }}</div>
       </div>
     </div>
     <!-- fog -->
@@ -27,7 +27,7 @@
       </div>
       <div>
         <div class="text-xs text-orange-800/50">Fog (probability)</div>
-        <div class="text-sm text-orange-900/80 capitalize">{{ fogProbability() }}%</div>
+        <div class="text-xs text-orange-900/80 capitalize">{{ fogProbability() }}%</div>
       </div>
     </div>
     <!-- precipitation -->
@@ -37,7 +37,7 @@
       </div>
       <div>
         <div class="text-xs text-orange-800/50">Precipitation</div>
-        <div class="text-sm text-orange-900/80">{{ precipitation() }}</div>
+        <div class="text-xs text-orange-900/80">{{ precipitation() }}</div>
       </div>
     </div>
   </div>
