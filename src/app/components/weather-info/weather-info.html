@@ -1,21 +1,43 @@
 <div class="bg-white/40 backdrop-blur-sm rounded-2xl p-4">
   <div class="grid grid-cols-2 gap-4">
+    <!-- visibility -->
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-full bg-orange-100/60 flex items-center justify-center text-orange-700">
-        <tui-icon icon="@tui.map-pin" [style.color]="'var(--tui-background-accent-1)'" [style.font-size.rem]="1.5" />
+        <tui-icon icon="@tui.eye" [style.font-size.rem]="1.5" />
       </div>
       <div>
-        <div class="text-xs text-orange-800/50">Conditions</div>
-        <div class="text-sm text-orange-900/80 capitalize">partly cloudy</div>
+        <div class="text-xs text-orange-800/50">Visibility</div>
+        <div class="text-sm text-orange-900/80 capitalize">{{ visibilityScore() }}</div>
       </div>
     </div>
+    <!-- air quality -->
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-orange-100/60 flex items-center justify-center text-orange-700">
+        <tui-icon icon="@tui.spray-can" [style.font-size.rem]="1.5" />
+      </div>
+      <div>
+        <div class="text-xs text-orange-800/50">Air quality</div>
+        <div class="text-sm text-orange-900/80 capitalize">{{ airQualityScore() }}</div>
+      </div>
+    </div>
+    <!-- fog -->
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-blue-100/60 flex items-center justify-center text-orange-700">
+        <tui-icon icon="@tui.cloud-fog" [style.color]="'var(--tui-background-accent-1)'" [style.font-size.rem]="1.5" />
+      </div>
+      <div>
+        <div class="text-xs text-orange-800/50">Fog (probability)</div>
+        <div class="text-sm text-orange-900/80 capitalize">{{ fogProbability() }}%</div>
+      </div>
+    </div>
+    <!-- precipitation -->
     <div class="flex items-center gap-3">
       <div class="w-10 h-10 rounded-full bg-blue-100/60 flex items-center justify-center text-blue-700">
-        <tui-icon icon="@tui.map-pin" [style.color]="'var(--tui-background-accent-1)'" [style.font-size.rem]="1.5" />
+        <tui-icon icon="@tui.cloud-rain" [style.color]="'var(--tui-background-accent-1)'" [style.font-size.rem]="1.5" />
       </div>
       <div>
         <div class="text-xs text-orange-800/50">Precipitation</div>
-        <div class="text-sm text-orange-900/80">15%</div>
+        <div class="text-sm text-orange-900/80">{{ precipitation() }}</div>
       </div>
     </div>
   </div>

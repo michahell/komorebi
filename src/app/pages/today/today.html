@@ -15,15 +15,21 @@
         <kr-magic-hours [today]="today"></kr-magic-hours>
       </div>
 
-      <!--      <div class="mb-8">-->
-      <!--        <kr-sun-visibility [today]="today"></kr-sun-visibility>-->
-      <!--      </div>-->
+      <div class="mb-8">
+        <kr-sun-visibility [today]="today"></kr-sun-visibility>
+      </div>
 
       <div class="mb-8">
         <kr-cloud-coverage [today]="today"></kr-cloud-coverage>
       </div>
 
-      <kr-weather-info [today]="today"></kr-weather-info>
+      <div class="mb-8">
+        <kr-weather-info [today]="today"></kr-weather-info>
+      </div>
+
+      @if (verdictScores(); as verdictScores) {
+        <kr-verdict [verdictScores]="verdictScores"></kr-verdict>
+      }
     }
   </div>
 </div>

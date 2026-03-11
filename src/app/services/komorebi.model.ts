@@ -22,17 +22,6 @@ export interface MappedEventData extends EventData {
 }
 
 export interface MappedWeatherData {
-  lowclouds_min: any;
-  lowclouds_mean: any;
-  lowclouds_max: any;
-  // mid clouds
-  midclouds_min: any;
-  midclouds_mean: any;
-  midclouds_max: any;
-  // high clouds
-  highclouds_min: any;
-  highclouds_mean: any;
-  highclouds_max: any;
   // visibility
   visibility_min: any;
   visibility_mean: any;

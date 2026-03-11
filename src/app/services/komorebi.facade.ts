@@ -77,18 +77,6 @@ export class KomorebiFacade {
     type field = keyof WeatherDataDay;
 
     const wantedFields: field[] = [
-      // low clouds
-      'lowclouds_min',
-      'lowclouds_mean',
-      'lowclouds_max',
-      // mid clouds
-      'midclouds_min',
-      'midclouds_mean',
-      'midclouds_max',
-      // high clouds
-      'highclouds_min',
-      'highclouds_mean',
-      'highclouds_max',
       // visibility
       'visibility_min',
       'visibility_mean',
@@ -105,7 +93,7 @@ export class KomorebiFacade {
 
     return Object.entries(weather.data_day).reduce<any>((newMapped, [key, value]) => {
       if (wantedFields.includes(key as field)) {
-        newMapped[key] = value;
+        newMapped[key] = value[0];
         return newMapped;
       } else {
         return newMapped;

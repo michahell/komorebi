@@ -23,6 +23,7 @@
     "@taiga-ui/core": "^4.73.0",
     "@taiga-ui/event-plugins": "^4.0.2",
     "@taiga-ui/icons": "^4.73.0",
+    "@taiga-ui/icons-fontawesome": "^4.74.1",
     "@taiga-ui/kit": "^4.73.0",
     "@taiga-ui/layout": "^4.73.0",
     "@tailwindcss/postcss": "^4.2.1",

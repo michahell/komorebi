@@ -2,43 +2,43 @@
   <span class="text-xs text-orange-900/60 tracking-wide font-semibold"> CLOUD COVERAGE </span>
 </div>
 <div class="space-y-3">
-  <span class="text-xs text-orange-900/60 tracking-wide font-semibold">high</span>
-  <div class="flex items-center justify-between">
-    <div class="flex-1 h-3 bg-blue-500/50 ring-2 ring-blue-500/50 rounded-full overflow-hidden">
+  <div class="flex items-center justify-between mt-1">
+    <div class="flex-1 h-4 bg-blue-500/50 ring-2 ring-blue-500/50 rounded-full overflow-hidden">
       <progress
         max="100"
-        size="m"
+        size="l"
         tuiProgressBar
         class="progress"
         [tuiProgressColorSegments]="highCloudCoverageColors()"
         [value]="100"
       ></progress>
     </div>
+    <span class="absolute left-7 text-xs text-gray-800/50 tracking-wide">high</span>
   </div>
-  <span class="text-xs text-orange-900/60 tracking-wide font-semibold">medium</span>
-  <div class="flex items-center justify-between">
-    <div class="flex-1 h-3 bg-blue-500/50 ring-2 ring-blue-500/50 rounded-full overflow-hidden">
+  <div class="flex items-center justify-between mt-1">
+    <div class="flex-1 h-4 bg-blue-500/50 ring-2 ring-blue-500/50 rounded-full overflow-hidden">
       <progress
         max="100"
-        size="m"
+        size="l"
         tuiProgressBar
         class="progress"
         [tuiProgressColorSegments]="midCloudCoverageColors()"
         [value]="100"
       ></progress>
     </div>
+    <span class="absolute left-7 text-xs text-gray-800/50 tracking-wide">medium</span>
   </div>
-  <span class="text-xs text-orange-900/60 tracking-wide font-semibold">low</span>
-  <div class="flex items-center justify-between">
-    <div class="flex-1 h-3 bg-blue-500/50 ring-2 ring-blue-500/50 rounded-full overflow-hidden">
+  <div class="flex items-center justify-between mt-1">
+    <div class="flex-1 h-4 bg-blue-500/50 ring-2 ring-blue-500/50 rounded-full overflow-hidden">
       <progress
         max="100"
-        size="m"
+        size="l"
         tuiProgressBar
         class="progress"
         [tuiProgressColorSegments]="lowCloudCoverageColors()"
         [value]="100"
       ></progress>
     </div>
+    <span class="absolute left-7 text-xs text-gray-800/50 tracking-wide">low</span>
   </div>
 </div>

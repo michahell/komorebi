@@ -1,7 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
 import { TuiProgressBar, TuiProgressColorSegments } from '@taiga-ui/kit';
-import { delay, of } from 'rxjs';
 import { TodayData } from 'services/komorebi.model';
 
 @Component({
@@ -12,11 +10,9 @@ import { TodayData } from 'services/komorebi.model';
 })
 export class CloudCoverage {
   readonly today = input.required<TodayData>();
-  readonly slowValue$ = of(100).pipe(delay(1500));
-
-  highCloudCoverageColors = computed(() => this.#mapCloudCoverToColor(this.today().weather.hourly.highclouds));
-  midCloudCoverageColors = computed(() => this.#mapCloudCoverToColor(this.today().weather.hourly.midclouds));
-  lowCloudCoverageColors = computed(() => this.#mapCloudCoverToColor(this.today().weather.hourly.lowclouds));
+  readonly highCloudCoverageColors = computed(() => this.#mapCloudCoverToColor(this.today().weather.hourly.highclouds));
+  readonly midCloudCoverageColors = computed(() => this.#mapCloudCoverToColor(this.today().weather.hourly.midclouds));
+  readonly lowCloudCoverageColors = computed(() => this.#mapCloudCoverToColor(this.today().weather.hourly.lowclouds));
 
   #mapCloudCoverToColor(cloudCover: number[]): string[] {
     return cloudCover.map((cloudCover, index) => {
