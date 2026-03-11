@@ -1,14 +1,20 @@
 import { Component, computed, input } from '@angular/core';
 import { TuiIcon } from '@taiga-ui/core';
 import { TodayData } from 'services/komorebi.model';
+import { NgTemplateOutlet } from '@angular/common';
+import { between, down, up } from 'ngx-mq';
 
 @Component({
   selector: 'kr-weather-info',
-  imports: [TuiIcon],
+  imports: [TuiIcon, NgTemplateOutlet],
   templateUrl: './weather-info.html',
   styleUrl: './weather-info.css',
 })
 export class WeatherInfo {
+  isMobile = down('md');
+  isTablet = between('md', 'lg');
+  isDesktop = up('lg');
+
   today = input.required<TodayData>();
   fogProbability = computed(() => this.today().weather.day.fog_probability);
   precipitation = computed(() => this.today().weather.day.precipitation);

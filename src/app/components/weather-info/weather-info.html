@@ -1,44 +1,68 @@
-<div class="bg-white/40 backdrop-blur-sm rounded-2xl p-4">
-  <div class="grid grid-cols-2 gap-4">
-    <!-- visibility -->
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-orange-100/60 flex items-center justify-center text-orange-700">
-        <tui-icon icon="@tui.eye" [style.font-size.rem]="1.5" />
-      </div>
-      <div>
-        <div class="text-xs text-orange-800/50">Visibility (min, mean, max)</div>
-        <div class="text-xs text-orange-900/80 capitalize">{{ visibility() }}</div>
-      </div>
+<div class="bg-white/40 ring-2 ring-orange-800/10 rounded-2xl p-4">
+  @if (isMobile()) {
+    <div class="grid grid-cols-1 gap-2 mb-3">
+      <ng-container *ngTemplateOutlet="visibilityFragment; context: { $implicit: visibility() }"></ng-container>
+      <ng-container *ngTemplateOutlet="airQualityFragment; context: { $implicit: airQuality() }"></ng-container>
     </div>
-    <!-- air quality -->
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-orange-100/60 flex items-center justify-center text-orange-700">
-        <tui-icon icon="@tui.spray-can" [style.font-size.rem]="1.5" />
-      </div>
-      <div>
-        <div class="text-xs text-orange-800/50">Air quality (min, mean, max)</div>
-        <div class="text-xs text-orange-900/80 capitalize">{{ airQuality() }}</div>
-      </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      <ng-container *ngTemplateOutlet="fogFragment; context: { $implicit: fogProbability() }"></ng-container>
+      <ng-container *ngTemplateOutlet="precipitationFragment; context: { $implicit: precipitation() }"></ng-container>
     </div>
-    <!-- fog -->
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100/60 flex items-center justify-center text-orange-700">
-        <tui-icon icon="@tui.cloud-fog" [style.color]="'var(--tui-background-accent-1)'" [style.font-size.rem]="1.5" />
-      </div>
-      <div>
-        <div class="text-xs text-orange-800/50">Fog (probability)</div>
-        <div class="text-xs text-orange-900/80 capitalize">{{ fogProbability() }}%</div>
-      </div>
+  } @else {
+    <div class="grid grid-cols-2 gap-4">
+      <ng-container *ngTemplateOutlet="visibilityFragment; context: { $implicit: visibility() }"></ng-container>
+      <ng-container *ngTemplateOutlet="airQualityFragment; context: { $implicit: airQuality() }"></ng-container>
+      <ng-container *ngTemplateOutlet="fogFragment; context: { $implicit: fogProbability() }"></ng-container>
+      <ng-container *ngTemplateOutlet="precipitationFragment; context: { $implicit: precipitation() }"></ng-container>
     </div>
-    <!-- precipitation -->
-    <div class="flex items-center gap-3">
-      <div class="w-10 h-10 rounded-full bg-blue-100/60 flex items-center justify-center text-blue-700">
-        <tui-icon icon="@tui.cloud-rain" [style.color]="'var(--tui-background-accent-1)'" [style.font-size.rem]="1.5" />
-      </div>
-      <div>
-        <div class="text-xs text-orange-800/50">Precipitation</div>
-        <div class="text-xs text-orange-900/80">{{ precipitation() }}</div>
-      </div>
+  }
+</div>
+
+<ng-template #visibilityFragment let-visibility>
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 min-w-40px rounded-full bg-orange-100/60 flex items-center justify-center text-orange-700">
+      <tui-icon icon="@tui.eye" [style.font-size.rem]="1.5" />
+    </div>
+    <div>
+      <div class="text-xs text-orange-800/50">Visibility (min, mean, max)</div>
+      <div class="text-xs text-orange-900/80 capitalize">{{ visibility }}</div>
     </div>
   </div>
-</div>
+</ng-template>
+
+<ng-template #airQualityFragment let-airQuality>
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-full bg-orange-100/60 flex items-center justify-center text-orange-700">
+      <tui-icon icon="@tui.spray-can" [style.font-size.rem]="1.5" />
+    </div>
+    <div>
+      <div class="text-xs text-orange-800/50">Air quality (min, mean, max)</div>
+      <div class="text-xs text-orange-900/80 capitalize">{{ airQuality }}</div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #fogFragment let-fogProbability>
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-full bg-blue-100/60 flex items-center justify-center text-orange-700">
+      <tui-icon icon="@tui.cloud-fog" [style.color]="'var(--tui-background-accent-1)'" [style.font-size.rem]="1.5" />
+    </div>
+    <div>
+      <div class="text-xs text-orange-800/50">Fog (probability)</div>
+      <div class="text-xs text-orange-900/80 capitalize">{{ fogProbability }}%</div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #precipitationFragment let-precipitation>
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 rounded-full bg-blue-100/60 flex items-center justify-center text-blue-700">
+      <tui-icon icon="@tui.cloud-rain" [style.color]="'var(--tui-background-accent-1)'" [style.font-size.rem]="1.5" />
+    </div>
+    <div>
+      <div class="text-xs text-orange-800/50">Precipitation</div>
+      <div class="text-xs text-orange-900/80">{{ precipitation }}</div>
+    </div>
+  </div>
+</ng-template>

@@ -30,35 +30,13 @@
     </div>
   }
   <ng-template #verdictScore let-verdict>
-    <tui-icon
-      icon="@tui.fa.solid.sun"
-      class="m-1"
-      [class]="verdict > 0 ? 'text-orange-600/80' : 'text-orange-800/30'"
-      [style.font-size.rem]="1.5"
-    />
-    <tui-icon
-      icon="@tui.fa.solid.sun"
-      class="m-1"
-      [class]="verdict > 0.2 && verdict < 0.4 ? 'text-orange-600/80' : 'text-orange-800/30'"
-      [style.font-size.rem]="1.5"
-    />
-    <tui-icon
-      icon="@tui.fa.solid.sun"
-      class="m-1"
-      [class]="verdict > 0.4 && verdict < 0.6 ? 'text-orange-600/80' : 'text-orange-800/30'"
-      [style.font-size.rem]="1.5"
-    />
-    <tui-icon
-      icon="@tui.fa.solid.sun"
-      class="m-1"
-      [class]="verdict > 0.6 && verdict < 0.8 ? 'text-orange-600/80' : 'text-orange-800/30'"
-      [style.font-size.rem]="1.5"
-    />
-    <tui-icon
-      icon="@tui.fa.solid.sun"
-      class="m-1"
-      [class]="verdict > 0.8 ? 'text-orange-600/80' : 'text-orange-800/30'"
-      [style.font-size.rem]="1.5"
-    />
+    @for (scoreBracket of [0, 0.2, 0.4, 0.6, 0.8]; track $index) {
+      <tui-icon
+        icon="@tui.fa.solid.sun"
+        class="m-1"
+        [class]="verdict > scoreBracket ? 'text-orange-600/80' : 'text-orange-800/30'"
+        [style.font-size.rem]="1.2"
+      />
+    }
   </ng-template>
 }

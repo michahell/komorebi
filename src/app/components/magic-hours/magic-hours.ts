@@ -1,6 +1,7 @@
 import { Component, computed, input, Signal } from '@angular/core';
 import { MagicHourBar } from 'components/magic-hour-bar/magic-hour-bar';
 import { TodayData } from 'services/komorebi.model';
+import { between, down, up } from 'ngx-mq';
 
 @Component({
   selector: 'kr-magic-hours',
@@ -10,6 +11,9 @@ import { TodayData } from 'services/komorebi.model';
 })
 export class MagicHours {
   today = input.required<TodayData>();
+  isMobile = down('md');
+  isTablet = between('md', 'lg');
+  isDesktop = up('lg');
 
   discreteBlueHours: Signal<{
     sunrise: { bhs: number; bhe: number };
